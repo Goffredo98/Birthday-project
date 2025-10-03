@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seliana's Birthday</title>
+    <!-- Tailwind CSS CDN untuk styling responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS untuk tampilan lebih baik */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #b6fbe6 0%, #e2c4ff 50%, #a8e6cf 100%);
+        }
+
+        .audio-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 640px) {
+            .audio-controls {
+                top: 10px;
+                right: 10px;
+                padding: 6px;
+            }
+        }
+
+        .photo-frame {
+            transition: transform 0.3s ease;
+        }
+
+        .photo-frame:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center justify-center p-4 overflow-x-hidden">
+    <!-- Elemen Audio Backsound (Lofi Happy Birthday Instrumental) -->
+    <audio id="birthdayAudio" loop preload="auto">
+        <source src="Happy Birthday (Piano Version) [vhVBWw6rId0].mp3" type="audio/mp4">
+        <!-- Fallback: Jika CDN gagal, ganti dengan file lokal Anda -->
+        Browser Anda tidak mendukung audio. Silakan gunakan browser modern.
+    </audio>
+
+    <!-- Kontrol Audio (Tombol Play/Pause Tetap di Atas Kanan) -->
+    <div class="audio-controls">
+        <button id="playPauseBtn"
+            class="w-12 h-12 rounded-full bg-purple-500 text-white flex items-center justify-center hover:bg-purple-600 transition-all duration-200 shadow-md focus:outline-none">
+            <!-- Icon Play (Awalnya Terlihat) -->
+            <svg id="playIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664zM21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                </path>
+            </svg>
+            <!-- Icon Pause (Awalnya Tersembunyi) -->
+            <svg id="pauseIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6"></path>
+            </svg>
+        </button>
+        <p class="text-xs text-gray-600 text-center mt-1 px-1"><b>Happy Birthday To You </b></p>
+    </div>
+
+    <!-- Konten Utama: Kartu Ucapan -->
+    <div
+        class="max-w-md w-full bg-white rounded-3xl shadow-xl overflow-hidden mb-6 transform transition-all duration-300 hover:shadow-2xl">
+        <!-- Header Gambar Perayaan -->
+        <div class="relative h-80 overflow-hidden">
+            <img src="Header fotonya.jpg" alt="foto header" class="w-full h-full object-cover">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-center justify-center">
+                <h1 class="text-3xl md:text-4xl font-bold text-white text-center px-4 drop-shadow-lg">
+                    Habede Kiting :)
+                </h1>
+            </div>
+        </div>
+
+        <!-- Isi Kartu -->
+        <div class="p-6">
+            <!-- Pesan Ucapan -->
+            <div class="text-center mb-6">
+                <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                    🎊🎊🎊
+                </p>
+                <h2 class="text-2xl md:text-3xl font-bold text-purple-600 mb-3 animate-pulse">
+                    Happy Birthday 🎉🎉🎉
+                </h2>
+                <p class="text-gray-600 text-sm md:text-base leading-relaxed">
+                    <b> Selamat Ultah ya sell.. <br> semoga diberkati Tuhan,Dikasih umur yang
+                        panjang,Kesehatan,Kepintaran,rezeki,
+                        Dilindungi dari segala yang jahat, dan selalu dalam bimbingan tuhan. Pokoknya Wish u all the
+                        best lah 🎉🎉😁😁</b>
+                </p>
+            </div>
+
+            <!-- Template Foto Orang Ulang Tahun -->
+            <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-5 mb-6 text-center">
+                <h3 class="font-semibold text-purple-800 mb-4 text-lg">Ciee Udah Makin Tua 😂😂😂</h3>
+                <div
+                    class="w-40 h-40 md:w-48 md:h-48 mx-auto overflow-hidden rounded-full border-4 border-purple-400 shadow-lg photo-frame">
+                    <img id="birthdayPhoto" src="FOTONYA.jpg" alt="Person's photo" class="w-full h-full object-cover">
+                </div>
+                <p class="text-sm text-purple-600 mt-3 italic">
+                    Tapi kalau Diliat-liat masih cantik kok aman aja 😁
+                </p>
+            </div>
+
+            <!-- Elemen Perayaan (Icon dengan Emoji) -->
+            <div class="flex justify-center space-x-6 mb-4">
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-full flex items-center justify-center mb-2 shadow-md">
+                        <span class="text-2xl">🎂</span>
+                    </div>
+                    <span class="text-xs text-gray-600 font-medium"></span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-2 shadow-md">
+                        <span class="text-2xl">🎈</span>
+                    </div>
+                    <span class="text-xs text-gray-600 font-medium"></span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-2 shadow-md">
+                        <span class="text-2xl">🎁</span>
+                    </div>
+                    <span class="text-xs text-gray-600 font-medium"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center text-sm text-gray-600 px-4">
+        <p>EKHEMM... Kuenya jangan Lupa 🙄</p>
+        <p class="text-xs mt-1 opacity-75">Aku masih belajar jadi kalau menurutmu Jelek <br> agak agak dimaklumin lah
+            yak 🗿😁 </p>
+    </div>
+
+    <!-- JavaScript untuk Interaktivitas -->
+    <script>
+        // Elemen DOM
+        const audio = document.getElementById('birthdayAudio');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+        let isPlaying = false;
+
+        // Fungsi Toggle Play/Pause
+        playPauseBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+                isPlaying = false;
+                playPauseBtn.classList.remove('bg-green-500');
+                playPauseBtn.classList.add('bg-purple-500');
+            } else {
+                audio.play().then(() => {
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                    isPlaying = true;
+                    playPauseBtn.classList.remove('bg-purple-500');
+                    playPauseBtn.classList.add('bg-green-500');
+                }).catch((error) => {
+                    alert('Izinkan audio di pengaturan browser Anda untuk memutar musik! (Klik tombol play lagi)');
+                    console.error('Audio play failed:', error);
+                });
+            }
+        });
+
+        // Auto-play pada interaksi pertama (untuk UX lebih baik, sesuai kebijakan browser)
+        let hasInteracted = false;
+        document.addEventListener('click', function firstInteraction() {
+            if (!hasInteracted && !isPlaying) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                    playPauseBtn.classList.remove('bg-purple-500');
+                    playPauseBtn.classList.add('bg-green-500');
+                }).catch(() => {
+                    // Diam-diam gagal, tunggu klik tombol
+                });
+                hasInteracted = true;
+            }
+            document.removeEventListener('click', firstInteraction);
+        }, { once: true });
+
+        // Event audio selesai (loop sudah otomatis, tapi handle pause jika diperlukan)
+        audio.addEventListener('ended', () => {
+            isPlaying = false;
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+            playPauseBtn.classList.remove('bg-green-500');
+            playPauseBtn.classList.add('bg-purple-500');
+        });
+
+        // Efek hover pada foto (opsional, untuk interaktivitas)
+        const photo = document.getElementById('birthdayPhoto');
+        photo.parentElement.addEventListener('mouseenter', () => {
+            photo.parentElement.style.transform = 'scale(1.05)';
+        });
+        photo.parentElement.addEventListener('mouseleave', () => {
+            photo.parentElement.style.transform = 'scale(1)';
+        });
+
+
+
+    </script>
+    <script>
+        // Buat container balon
+        const balloonContainer = document.createElement("div");
+        balloonContainer.id = "balloon-container";
+        document.body.appendChild(balloonContainer);
+
+        function createBalloon() {
+            const balloon = document.createElement("div");
+            balloon.classList.add("balloon");
+
+            // Posisi random
+            balloon.style.left = Math.random() * 100 + "vw";
+
+            // Warna random
+            const colors = ["#ff6b6b", "#feca57", "#48dbfb", "#1dd1a1", "#5f27cd"];
+            balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+            // Durasi random
+            const duration = Math.random() * 5 + 5; // 5–10 detik
+            balloon.style.animationDuration = duration + "s";
+
+            balloonContainer.appendChild(balloon);
+
+            // Hapus setelah animasi selesai
+            setTimeout(() => {
+                balloon.remove();
+            }, duration * 1000);
+        }
+
+        // Buat balon tiap 400ms
+        setInterval(createBalloon, 400);
+    </script>
+</body>
+
+</html>
